@@ -2,6 +2,7 @@ package storage;
 
 import entity.User;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,4 +21,9 @@ public class InMemoryUserStorage {
         }
         return null;
     }
+
+    public List<User> getUsersList() {
+        return users;
+    }
+
 }

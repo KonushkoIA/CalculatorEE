@@ -11,12 +11,9 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/story")
 public class StoryServlet extends HttpServlet {
-    private InMemoryOperationStorage operationStorage = new InMemoryOperationStorage();
+    private final InMemoryOperationStorage operationStorage = new InMemoryOperationStorage();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-//       for (String operation : operationStorage.getStory()) {
-//           req.setAttribute("items", operation);
-//       }
         req.setAttribute("items", operationStorage.getStory());
        req.getServletContext().getRequestDispatcher("/pages/story.jsp").forward(req,resp);
     }

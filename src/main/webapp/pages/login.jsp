@@ -12,21 +12,6 @@
     <title>Login</title>
 </head>
 <body>
-<%--    <form action="/login" method="post">--%>
-<%--        <div class="mb-3">--%>
-<%--            <label for="formGroupExampleInput1" class="form-label">Username</label>--%>
-<%--            <br>--%>
-<%--            <input type="text" name="username" class="form-control" id="formGroupExampleInput1" placeholder="Username" minlength="3" required>--%>
-<%--        </div>--%>
-<%--        <div class="mb-3">--%>
-<%--            <label for="exampleInputPassword1" class="form-label">Password</label>--%>
-<%--            <br>--%>
-<%--            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" minlength="3" required>--%>
-<%--        </div>--%>
-<%--        <button type="submit" class="btn btn-primary">Submit</button>--%>
-<%--        <br>--%>
-<%--        <a href="/">Home</a>--%>
-<%--    </form>--%>
 <form action="/login" method="post">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNav">

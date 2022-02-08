@@ -1,6 +1,7 @@
 package servlets;
 
 import entity.User;
+import service.UsernameVerificationService;
 import storage.InMemoryUserStorage;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/registration", name = "registration")
 public class RegistrationServlet extends HttpServlet{
 
-    private InMemoryUserStorage userStorage = new InMemoryUserStorage();
+    private final InMemoryUserStorage userStorage = new InMemoryUserStorage();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -25,8 +26,13 @@ public class RegistrationServlet extends HttpServlet{
         String name = req.getParameter("name");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        UsernameVerificationService uvs = new UsernameVerificationService();
+        if (!uvs.checkUsername(username)){
+            resp.getWriter().write("A user with the same name already exists");
+        } else {
         User user = new User(name, username, password);
         userStorage.save(user);
         resp.sendRedirect("/");
+        }
     }
 }
