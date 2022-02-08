@@ -10,6 +10,6 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.getSession().invalidate();
-        resp.getWriter().println("Session ended");
+        resp.sendRedirect("/");
     }
 }
