@@ -1,8 +1,6 @@
 package servlets;
 
-import entity.User;
 import service.PutUserIntoSessionService;
-import storage.InMemoryUserStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

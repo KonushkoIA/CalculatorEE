@@ -1,20 +1,16 @@
 package service;
 
 import entity.User;
-import storage.InMemoryUserStorage;
-import java.util.List;
+import repository.userOperations.SelectUserByUsername;
 
 public class UsernameVerificationService {
 
-    private final InMemoryUserStorage userStorage = new InMemoryUserStorage();
-
     public boolean checkUsername(String username) {
-        List<User> usersList = userStorage.getUsersList();
-        for (User user : usersList) {
-            if (user.getUsername().equals(username)){
-                return false;
-            }
+        SelectUserByUsername userByUsername = new SelectUserByUsername();
+        User user = userByUsername.selectUserByUsername(username);
+        if (user == null){
+            return true;
         }
-        return true;
+        return !user.getUsername().equals(username);
     }
 }

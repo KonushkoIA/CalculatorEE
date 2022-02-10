@@ -1,8 +1,8 @@
 package servlets;
 
 import entity.User;
+import repository.userOperations.AddUser;
 import service.UsernameVerificationService;
-import storage.InMemoryUserStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +13,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/registration", name = "registration")
 public class RegistrationServlet extends HttpServlet{
-
-    private final InMemoryUserStorage userStorage = new InMemoryUserStorage();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -31,7 +29,8 @@ public class RegistrationServlet extends HttpServlet{
             resp.getWriter().write("A user with the same name already exists");
         } else {
         User user = new User(name, username, password);
-        userStorage.save(user);
+            AddUser addUser = new AddUser();
+            addUser.addUser(user);
         resp.sendRedirect("/");
         }
     }

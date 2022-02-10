@@ -31,9 +31,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/story">History</a>
             </li>
-    <form action="/logout" method="post">
-        <button>Logout</button>
-    </form>
+            <li class="nav-item">
+                <a class="nav-link" href="/changePassword">Change Password</a>
+            </li>
+            <form action="/logout" method="post">
+                <button>Logout</button>
+            </form>
 </c:if>
         </ul>
     </div>
