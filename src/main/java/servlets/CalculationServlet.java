@@ -1,7 +1,9 @@
 package servlets;
 
+import entity.Operation;
+import entity.User;
+import repository.actionsOfOperations.AddOperation;
 import service.CalculatingService;
-import storage.InMemoryOperationStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +14,6 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/calculation", name = "calculation")
 public class CalculationServlet extends HttpServlet {
-
-    private InMemoryOperationStorage operationStorage = new InMemoryOperationStorage();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -29,7 +29,9 @@ public class CalculationServlet extends HttpServlet {
         Double number2 = Double.parseDouble(num2);
         double response = CalculatingService.calculating(number1,number2,operation);
         resp.getWriter().format("%.2f",response);
-        String str = Double.toString(response);
-        operationStorage.save(str);
+        Operation operation1 = new Operation(response);
+        User user = (User) req.getSession().getAttribute("user");
+        AddOperation addOperation = new AddOperation();
+        addOperation.addOperation(operation1, user);
     }
 }

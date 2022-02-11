@@ -21,10 +21,11 @@ public class SelectUserByUsername implements DBUserRepository {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String username1 = rs.getString("user_name");
                 String password = rs.getString("password");
-                user = new User(name, username1, password);
+                user = new User(id, name, username1, password);
             }
         } catch (SQLException exception) {
             JDBCService.printSQLException(exception);

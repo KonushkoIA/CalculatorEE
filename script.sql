@@ -7,7 +7,9 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `operations` (
-    `id` int NOT NULL,
-    `operation` varchar(20) DEFAULT NULL,
-    FOREIGN KEY (id) REFERENCES users(id)
+    `id` int NOT NULL AUTO_INCREMENT,
+    `user_id` int NOT NULL,
+    `operation` double DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (`id`)
 );
